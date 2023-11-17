@@ -28,6 +28,7 @@ public class XMLDownloader {
     public void unzipData(String downloadedData, String unzippedData) throws IOException {
         byte[] buffer = new byte[1024];
         ZipInputStream zis = new ZipInputStream(new FileInputStream(downloadedData));
+        zis.getNextEntry();
         Path newFilePath = Paths.get(unzippedData);
         try (FileOutputStream fos = new FileOutputStream(newFilePath.toFile())) {
             int length;
