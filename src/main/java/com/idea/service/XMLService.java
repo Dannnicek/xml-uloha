@@ -1,7 +1,7 @@
-package com.idea;
+package com.idea.service;
 
-import com.idea.components.DataParser;
-import com.idea.components.XMLDownloader;
+import com.idea.component.DataParser;
+import com.idea.component.XMLDownloader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

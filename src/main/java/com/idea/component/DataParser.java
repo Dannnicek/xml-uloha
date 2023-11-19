@@ -1,4 +1,4 @@
-package com.idea.components;
+package com.idea.component;
 
 import com.idea.entity.VillagePart;
 import com.idea.entity.Village;
