@@ -23,6 +23,14 @@ public class DataParser {
     private final ObecRepository villageRepository;
     private final CastObceRepository villagePartRepository;
 
+    private final String villageTag = "vf:Obec";
+    private final String villageCodeTag = "obi:Kod";
+    private final String villageNameTag = "obi:Nazev";
+    private final String villagePartTag = "vf:CastObce";
+    private final String villagePartCodeTag = "coi:Kod";
+    private final String villagePartNameTag = "coi:Nazev";
+    private final String villagePartBelongToTag = "coi:Obec";
+
     @Autowired
     public DataParser(ObecRepository villageRepository, CastObceRepository villagePartRepository) {
         this.villageRepository = villageRepository;
@@ -45,10 +53,6 @@ public class DataParser {
     }
 
     private List<Obec> parseVillageData(Document document) {
-        String villageTag = "vf:Obec";
-        String villageCodeTag = "obi:Kod";
-        String villageNameTag = "obi:Nazev";
-
         List<Obec> villageList = new ArrayList<>();
         NodeList villageNodes = document.getElementsByTagName(villageTag);
         for (int i = 0; i < villageNodes.getLength(); i++) {
@@ -65,12 +69,6 @@ public class DataParser {
     }
 
     private List<CastObce> parseVillagePartData(Document document) {
-        String villagePartTag = "vf:CastObce";
-        String villagePartCodeTag = "coi:Kod";
-        String villagePartNameTag = "coi:Nazev";
-        String villagePartBelongToTag = "coi:Obec";
-        String villageCodeTag = "obi:Kod";
-
         List<CastObce> villagePartList = new ArrayList<>();
         NodeList villagePartNodes = document.getElementsByTagName(villagePartTag);
         for (int i = 0; i < villagePartNodes.getLength(); i++) {
