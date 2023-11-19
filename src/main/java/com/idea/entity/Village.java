@@ -3,16 +3,16 @@ package com.idea.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Obec {
+public class Village {
 
     @Id
     private String code;
     private String name;
 
-    public Obec() {
+    public Village() {
     }
 
-    public Obec(String code, String name) {
+    public Village(String code, String name) {
         this.code = code;
         this.name = name;
     }

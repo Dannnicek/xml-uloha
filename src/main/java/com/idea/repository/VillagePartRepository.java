@@ -1,10 +1,9 @@
 package com.idea.repository;
 
-import com.idea.entity.Obec;
+import com.idea.entity.VillagePart;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ObecRepository extends CrudRepository<Obec, Long> {
-    Obec findByCode(String code);
+public interface VillagePartRepository extends CrudRepository<VillagePart, Long> {
 }

@@ -1,9 +1,9 @@
 package com.idea.components;
 
-import com.idea.entity.CastObce;
-import com.idea.entity.Obec;
-import com.idea.repository.CastObceRepository;
-import com.idea.repository.ObecRepository;
+import com.idea.entity.VillagePart;
+import com.idea.entity.Village;
+import com.idea.repository.VillagePartRepository;
+import com.idea.repository.VillageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
@@ -20,8 +20,8 @@ import java.util.List;
 @Component
 public class DataParser {
 
-    private final ObecRepository villageRepository;
-    private final CastObceRepository villagePartRepository;
+    private final VillageRepository villageRepository;
+    private final VillagePartRepository villagePartRepository;
 
     private final String villageTag = "vf:Obec";
     private final String villageCodeTag = "obi:Kod";
@@ -32,7 +32,7 @@ public class DataParser {
     private final String villagePartBelongToTag = "coi:Obec";
 
     @Autowired
-    public DataParser(ObecRepository villageRepository, CastObceRepository villagePartRepository) {
+    public DataParser(VillageRepository villageRepository, VillagePartRepository villagePartRepository) {
         this.villageRepository = villageRepository;
         this.villagePartRepository = villagePartRepository;
     }
@@ -47,9 +47,9 @@ public class DataParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
             File inputFile = new File(unzippedData);
             Document document = builder.parse(inputFile);
-            List<Obec> villageList = parseVillageData(document);
+            List<Village> villageList = parseVillageData(document);
             villageRepository.saveAll(villageList);
-            List<CastObce> villagePartList = parseVillagePartData(document);
+            List<VillagePart> villagePartList = parseVillagePartData(document);
             villagePartRepository.saveAll(villagePartList);
         } catch (Exception e) {
             throw new RuntimeException();
@@ -60,10 +60,10 @@ public class DataParser {
      * Parses village data from the provided XML document and creates a list of villages.
      *
      * @param document The XML document containing village data.
-     * @return A list of Obec objects representing villages parsed from the document.
+     * @return A list of Village objects representing villages parsed from the document.
      */
-    private List<Obec> parseVillageData(Document document) {
-        List<Obec> villageList = new ArrayList<>();
+    private List<Village> parseVillageData(Document document) {
+        List<Village> villageList = new ArrayList<>();
         NodeList villageNodes = document.getElementsByTagName(villageTag);
         for (int i = 0; i < villageNodes.getLength(); i++) {
             Node villageNode = villageNodes.item(i);
@@ -71,7 +71,7 @@ public class DataParser {
                 Element villageElement = (Element) villageNode;
                 String code = villageElement.getElementsByTagName(villageCodeTag).item(0).getTextContent();
                 String name = villageElement.getElementsByTagName(villageNameTag).item(0).getTextContent();
-                Obec village = new Obec(code, name);
+                Village village = new Village(code, name);
                 villageList.add(village);
             }
         }
@@ -81,10 +81,10 @@ public class DataParser {
     /**
      * Parses village part data from the provided XML document and creates a list of village parts.
      * @param document The XML document containing village part data.
-     * @return A list of CastObce objects representing village parts parsed from the document.
+     * @return A list of VillagePart objects representing village parts parsed from the document.
      */
-    private List<CastObce> parseVillagePartData(Document document) {
-        List<CastObce> villagePartList = new ArrayList<>();
+    private List<VillagePart> parseVillagePartData(Document document) {
+        List<VillagePart> villagePartList = new ArrayList<>();
         NodeList villagePartNodes = document.getElementsByTagName(villagePartTag);
         for (int i = 0; i < villagePartNodes.getLength(); i++) {
             Node villagePartNode = villagePartNodes.item(i);
@@ -96,8 +96,8 @@ public class DataParser {
                 String code = villagePartElement.getElementsByTagName(villagePartCodeTag).item(0).getTextContent();
                 String name = villagePartElement.getElementsByTagName(villagePartNameTag).item(0).getTextContent();
 
-                Obec village = villageRepository.findByCode(villagePartBelongToCode);
-                CastObce villagePart = new CastObce(code, name, village);
+                Village village = villageRepository.findByCode(villagePartBelongToCode);
+                VillagePart villagePart = new VillagePart(code, name, village);
                 villagePartList.add(villagePart);
             }
         }

@@ -1,9 +1,10 @@
 package com.idea.repository;
 
-import com.idea.entity.CastObce;
+import com.idea.entity.Village;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CastObceRepository extends CrudRepository<CastObce, Long> {
+public interface VillageRepository extends CrudRepository<Village, Long> {
+    Village findByCode(String code);
 }

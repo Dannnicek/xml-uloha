@@ -3,7 +3,7 @@ package com.idea.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class CastObce {
+public class VillagePart {
 
     @Id
     private String code;
@@ -11,12 +11,12 @@ public class CastObce {
 
     @ManyToOne
     @JoinColumn(name = "obec_code")
-    private Obec villageBelongsToCode;
+    private Village villageBelongsToCode;
 
-    public CastObce() {
+    public VillagePart() {
     }
 
-    public CastObce(String code, String name, Obec villageBelongsToCode) {
+    public VillagePart(String code, String name, Village villageBelongsToCode) {
         this.code = code;
         this.name = name;
         this.villageBelongsToCode = villageBelongsToCode;
@@ -38,11 +38,11 @@ public class CastObce {
         this.name = name;
     }
 
-    public Obec getvillageBelongsToCode() {
+    public Village getVillageBelongsToCode() {
         return villageBelongsToCode;
     }
 
-    public void setvillageBelongsToCode(Obec villageBelongsToCode) {
+    public void setVillageBelongsToCode(Village villageBelongsToCode) {
         this.villageBelongsToCode = villageBelongsToCode;
     }
 }
