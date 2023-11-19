@@ -13,6 +13,10 @@ import java.util.zip.ZipInputStream;
 @Component
 public class XMLDownloader {
 
+    /**
+     * Downloads a file from the provided url and saves it to the provided path.
+     * @param downloadedData path to the downloaded data file
+     */
     public void downloadXml(URL url, String downloadedData) {
         try {
             Path destinationPath = Paths.get(downloadedData);
@@ -25,6 +29,11 @@ public class XMLDownloader {
         }
     }
 
+    /**
+     * Unzips data from a specific file and saves the unzipped data to another specific file.
+     * @param downloadedData path to the downloaded data file
+     * @param unzippedData path to the unzipped data file
+     */
     public void unzipData(String downloadedData, String unzippedData) throws IOException {
         byte[] buffer = new byte[1024];
         ZipInputStream zis = new ZipInputStream(new FileInputStream(downloadedData));

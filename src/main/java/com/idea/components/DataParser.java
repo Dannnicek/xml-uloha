@@ -37,6 +37,10 @@ public class DataParser {
         this.villagePartRepository = villagePartRepository;
     }
 
+    /**
+     * Parses provided xml data and then saves it to the database.
+     * @param unzippedData path to the xml file
+     */
     public void parseXml(String unzippedData) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -52,6 +56,12 @@ public class DataParser {
         }
     }
 
+    /**
+     * Parses village data from the provided XML document and creates a list of villages.
+     *
+     * @param document The XML document containing village data.
+     * @return A list of Obec objects representing villages parsed from the document.
+     */
     private List<Obec> parseVillageData(Document document) {
         List<Obec> villageList = new ArrayList<>();
         NodeList villageNodes = document.getElementsByTagName(villageTag);
@@ -68,6 +78,11 @@ public class DataParser {
         return villageList;
     }
 
+    /**
+     * Parses village part data from the provided XML document and creates a list of village parts.
+     * @param document The XML document containing village part data.
+     * @return A list of CastObce objects representing village parts parsed from the document.
+     */
     private List<CastObce> parseVillagePartData(Document document) {
         List<CastObce> villagePartList = new ArrayList<>();
         NodeList villagePartNodes = document.getElementsByTagName(villagePartTag);
