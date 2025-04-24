@@ -15,4 +15,5 @@ public class Main {
         XMLService dataProcessingService = context.getBean(XMLService.class);
         dataProcessingService.processData();
     }
+    // jiny komentar
 }
