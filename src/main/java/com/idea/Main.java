@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 @SpringBootApplication
 public class Main {
 
+    //Test komentar
     public static void main(String[] args) throws MalformedURLException {
         ApplicationContext context = SpringApplication.run(Main.class, args);
         XMLService dataProcessingService = context.getBean(XMLService.class);
